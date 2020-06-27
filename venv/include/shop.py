@@ -311,7 +311,7 @@ def log_in():
                     print("Manager - ",a[0])
                     b = print_all_staff()
                     for i in b:
-                       print("Staff - ",b[i])
+                       print("Staff - "+ i)
                     #Cdelat vivod clientov
 
 
@@ -331,6 +331,11 @@ def log_in():
                 log_in()
 
     else:
-        reg()
-
+        print("You are not registrated")
+        print("Do you want to register or try again?")
+        a = input("1/2: ")
+        if a == "1":
+            reg()
+        else:
+            log_in()
 log_in()
