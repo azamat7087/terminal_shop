@@ -424,6 +424,7 @@ def change_prices():
     employee()
 
 def shop(user_name1):
+
     user_name = user_name1
     print("*********************************")
     print("The price list: ")
