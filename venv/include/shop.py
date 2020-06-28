@@ -1,3 +1,5 @@
+import datetime
+
 id = 0
 admin_name = ''
 admin_password = ''
@@ -5,6 +7,18 @@ user_name = ''
 user_password = ''
 user_priority = dict()
 users = []
+
+def string_from_clients():
+    f = open('clients')
+    cl = ""
+    while True:
+        clients = f.readline()
+        if len(clients) == 0:
+            break
+        cl += clients
+
+    f.close()
+    return cl
 
 def string_from_products():
     f = open('products')
@@ -94,6 +108,14 @@ def reg():
 
     f1.close()
     f.close()
+
+def print_all_clients():
+    cl = string_from_clients()
+    c = cl.split(" ")
+    clients = []
+    for i in range(4, len(c), 3):
+        clients.append(c[i])
+    return clients
 
 def print_all_products():
     pr = string_from_products()
@@ -254,8 +276,8 @@ def del_staff():
                         else:
                             l[i] = str(int(l[i]) - 1)
 
-                    print(l)
-                    print(n)
+                    # print(l)
+                    # print(n)
                     res = l[0] +" " + n[0]
                     for i in range(1, len(l)):
                         res += " " + l[i] + " " + n[i]
@@ -401,6 +423,70 @@ def change_prices():
 
     employee()
 
+def shop(user_name1):
+    user_name = user_name1
+    print("*********************************")
+    print("The price list: ")
+    print("---------------------------------")
+    products = string_from_products().split(" ")
+    prod = []
+    price = []
+    check = ""
+    for i in range(4, len(products), 3):
+        prod.append(products[i])
+    for i in range(5, len(products), 3):
+        price.append(products[i])
+    for i in range(0, len(price)):
+        print(prod[i] + "-" + price[i] + "$")
+    print("-----------------------------------")
+    print("*********************************")
+
+    answer = input("Please choose: ")
+    cash_after_buy = 0
+    clients = string_from_clients().split(" ")
+    print(clients)
+    print(clients[clients.index(user_name)+1])
+    print(products[products.index(answer)+1])
+    if clients[clients.index(user_name)+1] < products[products.index(answer)+1]:
+        print("You don\'t have enough money :(")
+    else:
+        for i in range(0, len(products)):
+            if products[i] == answer:
+                f = open(f"history/{user_name}","a")
+
+                date1 = datetime.datetime.now()
+                cl = string_from_clients()
+                clients = cl.split(" ")
+
+                for i in range(0, len(clients)):
+                    if user_name == clients[i]:
+                        cash_after_buy = str(int(clients[i+1]) - int(products[products.index(answer)+1]))
+                        clients[i+1] = cash_after_buy
+                print(clients)
+                c = clients[0]
+                f1 = open("clients","w")
+                for i in range(1, len(clients)):
+                    c += " " + clients[i]
+                f1.write(c)
+                f1.close
+                check = str(date1.day) + "-" + str(date1.month) + "-" +  str(date1.year) +"/" + str(date1.hour) + ":" + str(date1.minute) +" "+ answer + " " + cash_after_buy + " "
+                f.write(check)
+                f.close()
+                ch = check.split(" ")
+                print(f"""Your check!
+    date:{ch[0]}
+    product: {ch[1]}
+    money left: {ch[2]}
+    
+    Thank you.See you next time!
+    (c)Azamat's shop""")
+
+    print("Do you wan\'t buy something else?")
+    ans = input("Y/N: ")
+    if ans.lower() == "y":
+        client(user_name)
+    else:
+        print("Bye bye")
 
 
 def employee():
@@ -419,6 +505,37 @@ def employee():
     if answer == "4":
         print("Goodbye")
 
+def client(user_name):
+    st_clients = string_from_clients()
+    if len(st_clients) == 0:
+        f = open('clients','w')
+        f.write("0 login cash")
+        f.close()
+    cl = st_clients.split(" ")
+    ls_clients = print_all_clients()
+    id = int(cl[len(cl) - 3])
+    id += 1
+    if user_name not in ls_clients:
+        f = open('clients', 'a')
+        f.write(" " + str(id) + " " + user_name + " " + "100")
+        f.close()
+    print(""""What do you wan\'t to do?
+    1. Buy something from shop
+    2. Show the putchase history
+    3. Show the wallet""")
+
+    a = input()
+    if a == "1":
+        shop(user_name)
+    elif a == "2":
+        history()
+    elif a == '3':
+        cl = string_from_clients()
+        clients = cl.split(" ")
+        for i in range(0, len(clients)):
+            if user_name == clients[i]:
+                print("The cash of {} is {}".format(user_name, clients[i+1]))
+        clients()
 
 def log_in():
     staff = string_from_staff()
@@ -448,25 +565,8 @@ def log_in():
         elif user_name in s:
             user_password = input("Password: ")
             if s[s.index(user_name) + 1] == user_password:
-                print('Welcome {}'.format(user_name))
-                print('''What you want to do? 
-                        1.Print all store employee.
-                        2.Go to the shop
-                        3.Exit''')
-                a = int(input())
-                if a == 1:
-                    a = print_all_users()
-                    print("Manager - ",a[0])
-                    b = print_all_staff()
-                    for i in b:
-                       print("Staff - "+ i)
-                    #Cdelat vivod clientov
-
-
-                elif a == 2:
-                    pass#shop
-                elif a == 3:
-                    pass
+                print('Welcome client {}'.format(user_name))
+                client(user_name)
 
 
         else:
@@ -486,4 +586,40 @@ def log_in():
             reg()
         else:
             log_in()
-log_in()
+
+def main():
+    print("Welcome to our shop, stranger")
+    print("""What do you wan\'t to do?
+    1. Log in
+    2. Show all users in system.
+    3. Print all store employee
+    4. Exit
+    """)
+    a = int(input())
+    if a == 1:
+       log_in()
+    elif a == 2:
+        a = print_all_users()
+        print("--------------------------------")
+        print("All users in system")
+        print("--------------------------------")
+        for i in a:
+            print(i)
+        print("--------------------------------")
+        main()
+    elif a == 3:
+        print("--------------------------------")
+        print("All employee in shop")
+        print("--------------------------------")
+        a = print_all_users()
+        print("Manager - ", a[0])
+        b = print_all_staff()
+        for i in b:
+            print("Staff - " + i)
+        print("--------------------------------")
+        main()
+    else:
+        print("Goodbye")
+
+
+main()
