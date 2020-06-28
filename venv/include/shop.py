@@ -344,6 +344,7 @@ def add_product():
         employee()
 
 def show_pricelist():
+    print("*********************************")
     print("The price list: ")
     print("---------------------------------")
     products = string_from_products().split(" ")
@@ -354,8 +355,9 @@ def show_pricelist():
     for i in range(5,len(products),3):
         price.append(products[i])
     for i in range(0, len(price)):
-        print(prod[i]+"-"+price[i])
+        print(prod[i]+"-"+price[i] + "$")
     print("-----------------------------------")
+    print("*********************************")
     employee()
 
 
@@ -367,10 +369,14 @@ def change_prices():
         print(str(i+1)+"-"+products[i])
     answer = input("Select: ")
     new_price = input("Add the new price: ")
+    # print(products)
     for i in range(0, len(products)):
-        try:
-
+        if new_price.isdigit():
+            # print(i)
+            # print(int(answer)-1)
+            # print(int(answer)-1 == i)
             if int(answer)-1 == i:
+                # print("TRUE")
                 a = string_from_products()
                 a = a.split(" ")
                 n = answer
@@ -389,10 +395,11 @@ def change_prices():
                 f.write(res)
                 f.close()
                 print("The price is changed")
-        except Exception:
+        else:
             print("Error.Try again")
             change_prices()
-        employee()
+
+    employee()
 
 
 
@@ -426,6 +433,9 @@ def log_in():
             if s[s.index(user_name)+1] == user_password:
                 print("Hello manager {}".format(user_name))
                 manager()
+            else:
+                print("Not correct")
+                log_in()
         elif user_name in s and user_name in staff:
             user_password = input("Password: ")
             if s[s.index(user_name)+1] == user_password:
