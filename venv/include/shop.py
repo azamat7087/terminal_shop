@@ -6,6 +6,18 @@ user_password = ''
 user_priority = dict()
 users = []
 
+def string_from_products():
+    f = open('products')
+    pr = ""
+    while True:
+        products = f.readline()
+        if len(products) == 0:
+            break
+        pr += products
+
+    f.close()
+    return pr
+
 def string_from_users():
     f1 = open('users', )
     us = ""
@@ -82,6 +94,15 @@ def reg():
 
     f1.close()
     f.close()
+
+def print_all_products():
+    pr = string_from_products()
+    p = pr.split(" ")
+    products = []
+    for i in range(4, len(p), 3):
+        if i != 3:
+            products.append(p[i])
+    return products
 
 def print_all_staff():
     st = string_from_staff()
@@ -267,6 +288,8 @@ def show_staff():
         manager()
     else:
         print("Goodbye!")
+
+
 def manager():
     print(""" What do you wan\'t to do?
     1. Add new staff
@@ -283,8 +306,80 @@ def manager():
     else:
         print("Goodbye!")
 
+def add_product():
+    product_name = input("Please insert the name of product: ")
+    product_price = input("Please insert the price of product: ")
+
+    str_products = string_from_products()
+    ls_products = print_all_products()
+    f = open("products",'a')
+
+    if len(str_products) == 0:
+        f.write("0 product price")
+
+    pr = str_products.split(" ")
+
+    id = int(pr[len(pr) - 3])
+    id += 1
+
+    if product_name not in ls_products:
+        f.write(" " + str(id) + " " + product_name + " " + product_price )
+
+    f.close()
+    print("Do you want to add more products?")
+    a = input("Y/N: ")
+    if a.lower() == "y":
+        add_product()
+    else:
+        employee()
+
+def change_prices():
+    print("Select the product for which you want to change a price")
+    products = print_all_products()
+    for i in range(0, len(products)):
+        print(str(i+1)+"-"+products[i])
+    answer = input("Select: ")
+    new_price = input("Add the new price: ")
+    for i in range(0, len(products)):
+        try:
+
+            if int(answer)-1 == i:
+                a = string_from_products()
+                a = a.split(" ")
+                n = answer
+                p = new_price
+                # for i in range(5,len(a),3):
+                for i in range(0, len(a)):
+                    if n == a[i]:
+                        a[i + 2] = p
+
+                res = a[0]
+
+                for i in range(1, len(a)):
+                    res += " " + a[i]
+
+                f = open('products','w')
+                f.write(res)
+                f.close()
+        except Exception:
+            print("Error.Try again")
+            change_prices()
+
+
+def employee():
+    print("""What do you want to do?
+    1. Add new product
+    2. Change the prices
+    3. Exit""")
+    answer = input("Choose: ")
+    if answer == "1":
+        add_product()
+    if answer == "2":
+        change_prices()
+
 
 def log_in():
+    staff = string_from_staff()
     answer = input("Do you have a account? Y/N: ")
     if answer.lower() == 'y':
         user_name = input("Login: ")
@@ -296,6 +391,14 @@ def log_in():
             if s[s.index(user_name)+1] == user_password:
                 print("Hello manager {}".format(user_name))
                 manager()
+        elif user_name in s and user_name in staff:
+            user_password = input("Password: ")
+            if s[s.index(user_name)+1] == user_password:
+                print("Hello employee {}".format(user_name))
+                employee()
+            else:
+                print("Not correct")
+                log_in()
 
         elif user_name in s:
             user_password = input("Password: ")
