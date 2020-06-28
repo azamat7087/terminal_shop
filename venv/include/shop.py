@@ -254,8 +254,11 @@ def del_staff():
                         else:
                             l[i] = str(int(l[i]) - 1)
 
-                    for i in range(0, len(l)):
-                        res += l[i] + " " + n[i] + " "
+                    print(l)
+                    print(n)
+                    res = l[0] +" " + n[0]
+                    for i in range(1, len(l)):
+                        res += " " + l[i] + " " + n[i]
 
 
                     #print(res)
@@ -316,14 +319,21 @@ def add_product():
 
     if len(str_products) == 0:
         f.write("0 product price")
+        f.close()
 
-    pr = str_products.split(" ")
+    f = open('products','a')
+    str_products1 = string_from_products()
+
+    pr = str_products1.split(" ")
 
     id = int(pr[len(pr) - 3])
     id += 1
 
+
     if product_name not in ls_products:
         f.write(" " + str(id) + " " + product_name + " " + product_price )
+    else:
+        print("This product is already in the list")
 
     f.close()
     print("Do you want to add more products?")
@@ -332,6 +342,23 @@ def add_product():
         add_product()
     else:
         employee()
+
+def show_pricelist():
+    print("The price list: ")
+    print("---------------------------------")
+    products = string_from_products().split(" ")
+    prod = []
+    price = []
+    for i in range(4,len(products),3):
+        prod.append(products[i])
+    for i in range(5,len(products),3):
+        price.append(products[i])
+    for i in range(0, len(price)):
+        print(prod[i]+"-"+price[i])
+    print("-----------------------------------")
+    employee()
+
+
 
 def change_prices():
     print("Select the product for which you want to change a price")
@@ -361,21 +388,29 @@ def change_prices():
                 f = open('products','w')
                 f.write(res)
                 f.close()
+                print("The price is changed")
         except Exception:
             print("Error.Try again")
             change_prices()
+        employee()
+
 
 
 def employee():
     print("""What do you want to do?
     1. Add new product
     2. Change the prices
-    3. Exit""")
+    3. Show pricelist
+    4. Exit""")
     answer = input("Choose: ")
     if answer == "1":
         add_product()
     if answer == "2":
         change_prices()
+    if answer == "3":
+        show_pricelist()
+    if answer == "4":
+        print("Goodbye")
 
 
 def log_in():
@@ -405,7 +440,7 @@ def log_in():
             if s[s.index(user_name) + 1] == user_password:
                 print('Welcome {}'.format(user_name))
                 print('''What you want to do? 
-                        1.Print all users in system.
+                        1.Print all store employee.
                         2.Go to the shop
                         3.Exit''')
                 a = int(input())
