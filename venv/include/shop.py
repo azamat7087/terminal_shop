@@ -444,11 +444,24 @@ def shop(user_name1):
     answer = input("Please choose: ")
     cash_after_buy = 0
     clients = string_from_clients().split(" ")
-    print(clients)
-    print(clients[clients.index(user_name)+1])
-    print(products[products.index(answer)+1])
-    if clients[clients.index(user_name)+1] < products[products.index(answer)+1]:
+    # print(clients)
+    # print(clients[clients.index(user_name)+1])
+    # print(products[products.index(answer)+1])
+    if int(clients[clients.index(user_name)+1]) < int(products[products.index(answer)+1]):
         print("You don\'t have enough money :(")
+        print("Do you wan't to sell your soul to the devil to get some money?")
+        ans = input("Y/N: ")
+        if ans.lower() == "y":
+            print("Good deal.See you in hell)")
+            for i in range(0, len(clients)):
+                if user_name == clients[i]:
+                    clients[i+1] = "100"
+            f = open('clients',"w")
+            cl = clients[0]
+            for i in range(1, len(clients)):
+                cl += " " + clients[i]
+            f.write(cl)
+            f.close()
     else:
         for i in range(0, len(products)):
             if products[i] == answer:
@@ -462,7 +475,7 @@ def shop(user_name1):
                     if user_name == clients[i]:
                         cash_after_buy = str(int(clients[i+1]) - int(products[products.index(answer)+1]))
                         clients[i+1] = cash_after_buy
-                print(clients)
+                # print(clients)
                 c = clients[0]
                 f1 = open("clients","w")
                 for i in range(1, len(clients)):
@@ -481,12 +494,8 @@ def shop(user_name1):
     Thank you.See you next time!
     (c)Azamat's shop""")
 
-    print("Do you wan\'t buy something else?")
-    ans = input("Y/N: ")
-    if ans.lower() == "y":
-        client(user_name)
-    else:
-        print("Bye bye")
+
+
 
 
 def employee():
@@ -505,7 +514,32 @@ def employee():
     if answer == "4":
         print("Goodbye")
 
+def history(user_name):
+    print("It is your history: ")
+    f = open(f"history/{user_name}")
+    hs = ""
+    while True:
+        history = f.readline()
+        if len(history) == 0:
+            break
+        hs += history
+    f.close()
+    time = []
+    product = []
+    cash_after = []
+    hs = hs.split(" ")
+    for i in range(0, len(hs),3):
+        time.append(hs[i])
+    for i in range(1, len(hs),3):
+        product.append(hs[i])
+    for i in range(2, len(hs),3):
+        cash_after.append(hs[i])
+    for i in range(0, len(product)):
+        print("Date: "+time[i] + ", product: " + product[i] + ", cash left: "+cash_after[i])
+
+
 def client(user_name):
+
     st_clients = string_from_clients()
     if len(st_clients) == 0:
         f = open('clients','w')
@@ -528,7 +562,7 @@ def client(user_name):
     if a == "1":
         shop(user_name)
     elif a == "2":
-        history()
+        history(user_name)
     elif a == '3':
         cl = string_from_clients()
         clients = cl.split(" ")
@@ -536,6 +570,8 @@ def client(user_name):
             if user_name == clients[i]:
                 print("The cash of {} is {}".format(user_name, clients[i+1]))
         clients()
+    else:
+        print("Bye")
 
 def log_in():
     staff = string_from_staff()
@@ -578,6 +614,9 @@ def log_in():
             else:
                 log_in()
 
+
+    elif answer.lower() == "n":
+        reg()
     else:
         print("You are not registrated")
         print("Do you want to register or try again?")
