@@ -569,7 +569,7 @@ def client(user_name):
         for i in range(0, len(clients)):
             if user_name == clients[i]:
                 print("The cash of {} is {}".format(user_name, clients[i+1]))
-        clients()
+
     else:
         print("Bye")
 
