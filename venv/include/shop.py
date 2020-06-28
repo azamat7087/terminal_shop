@@ -423,8 +423,8 @@ def change_prices():
 
     employee()
 
-def shop(user_name1):
-    user_name = user_name1
+def shop():
+
     print("*********************************")
     print("The price list: ")
     print("---------------------------------")
@@ -484,7 +484,7 @@ def shop(user_name1):
     print("Do you wan\'t buy something else?")
     ans = input("Y/N: ")
     if ans.lower() == "y":
-        client(user_name)
+        client()
     else:
         print("Bye bye")
 
@@ -505,7 +505,7 @@ def employee():
     if answer == "4":
         print("Goodbye")
 
-def client(user_name):
+def client():
     st_clients = string_from_clients()
     if len(st_clients) == 0:
         f = open('clients','w')
@@ -526,7 +526,7 @@ def client(user_name):
 
     a = input()
     if a == "1":
-        shop(user_name)
+        shop()
     elif a == "2":
         history()
     elif a == '3':
@@ -566,7 +566,7 @@ def log_in():
             user_password = input("Password: ")
             if s[s.index(user_name) + 1] == user_password:
                 print('Welcome client {}'.format(user_name))
-                client(user_name)
+                client()
 
 
         else:
