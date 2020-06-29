@@ -214,6 +214,58 @@ def add_product():
     module.add_product(product_name ,product_price)
 
 
+
+def del_product():
+    pr = module.string_from_products().replace("\n"," ")
+    pr1 = pr.split()
+    view.show_pricelist()
+    del_pr = input("Choose what product are you want to delete(Please input the word): ")
+
+    for i in range(0, len(pr1)):
+        if del_pr == pr1[i]:
+            pr = pr.replace((pr1[i-1] + " " + pr1[i]+" "+ pr1[i+1]),"")
+    pr = pr.split(" ")
+    if "" in pr:
+        del pr[pr.index("")]
+
+    id = []
+    prod = []
+    price = []
+    for i in range(0, len(pr), 3):
+        id.append(pr[i])
+    for i in range(1, len(pr), 3):
+        prod.append(pr[i])
+    for i in range(2, len(pr), 3):
+        price.append(pr[i])
+
+    if "" in id:
+        del id[id.index("")]
+
+    for i in range(1, len(id)):
+        if int(id[i-1]) + 1 == int(id[i]):
+            pass
+        else:
+            id[i] = str(int(id[i-1]) + 1)
+
+    if "" in id:
+        del id[id.index("")]
+
+    if "" in prod:
+        del prod[prod.index("")]
+
+    if "" in price:
+        del price[price.index("")]
+
+    res = ""
+
+    for i in range(0, len(price)):
+        res += id[i] + " " + prod[i] + " " + price[i] + "\n"
+
+    module.update_products(res)
+    logger("{} is deleted from products".format(del_pr))
+    view.employee()
+
+
 def change_prices():
     products1 = print_all_products()
     products = []

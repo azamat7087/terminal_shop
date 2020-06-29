@@ -22,15 +22,18 @@ def employee():
        1. Add new product
        2. Change the prices
        3. Show pricelist
-       4. Exit""")
+       4. Delete product
+       5. Exit""")
     answer = input("Choose: ")
     if answer == "1":
         control.add_product()
     if answer == "2":
-       control.change_prices()
+        control.change_prices()
     if answer == "3":
-       show_pricelist1()
+        show_pricelist1()
     if answer == "4":
+        control.del_product()
+    if answer == "5":
         user_name = control.get_user_name()
         control.logger(": {} employees session end".format(user_name))
         print("Goodbye")

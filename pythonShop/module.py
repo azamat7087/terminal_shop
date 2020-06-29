@@ -140,6 +140,11 @@ def string_from_products():
     f.close()
     return pr
 
+def update_products(res):
+    f = open("data/products","w")
+    f.write(res)
+    f.close()
+
 
 def add_staff(res):
     id = []
