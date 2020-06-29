@@ -53,6 +53,7 @@ def shop():
                 res += id[i] + " " + login[i] + " " + password[i] + " " + cash[i] + " " + role[i] + "\n"
 
             module.update_users(res)
+            logger(": User {} sold his/her sole to the Devil".format( user_name))
             view.client()
         else:
             print("Fine")
@@ -82,9 +83,9 @@ def shop():
                 module.update_users(res)
 
                 # print("12   " + string_from_clients())#
-                check = str(date1.day) + "-" + str(date1.month) + "-" + str(date1.year) + "/" + str(
-                    date1.hour) + ":" + str(date1.minute) + " " + answer + " " + cash_after_buy + " " + user_name + "\n"
+                check = str(date1.day) + "-" + str(date1.month) + "-" + str(date1.year) + "/" + str(date1.hour) + ":" + str(date1.minute) + " " + answer + " " + cash_after_buy + " " + user_name + "\n"
                 module.update_history(check)
+                logger(": User {} bought {}".format(user_name,answer))
                 view.show_check(check)
 
         print("Do you want to buy something else?")
@@ -146,12 +147,13 @@ def add_staff():
     view.show_users()
     new_staff =""
     user = input("Choose: ")
+    user1 =""
     ls_st_user1 = ls_st_user()
     # print(ls_st_user1)
     # print(int(user))
     for i in range(9, len(ls_st_user1)):
         if str(int(user)+1) == str(ls_st_user1[i]):
-
+            user1 = ls_st_user1[i+1]
             ls_st_user1[i+4] = "staff"
             new_staff = ls_st_user1[i+1]
 
@@ -164,6 +166,7 @@ def add_staff():
             print(new_staff + " is hired")
             print("---------------------------------------------")
             break
+    logger(": User {} added to staff by admin".format(user1))
     view.admin()
 
 def del_staff():
@@ -174,9 +177,10 @@ def del_staff():
     ls_st_user1 = ls_st_user()
     # print(ls_st_user1)
     # print(int(user))
+    user1 = ""
     for i in range(9, len(ls_st_user1)):
         if str(int(user) + 1) == str(ls_st_user1[i]):
-
+            user1 = ls_st_user1[i + 1]
             ls_st_user1[i + 4] = "client"
             new_staff = ls_st_user1[i + 1]
 
@@ -188,6 +192,7 @@ def del_staff():
             print(new_staff + " is fired")
             print("---------------------------------------------")
             break
+    logger(": User {} deleted to staff by admin".format(user1))
     view.admin()
 
 def ls_st_user():
@@ -205,6 +210,7 @@ def add_product():
     product_name = input("Please insert the name of product: ")
     product_price = input("Please insert the price of product: ")
 
+    logger(": Product {} with price by {}".format(product_name,product_price,user_name))
     module.add_product(product_name ,product_price)
 
 
@@ -220,6 +226,8 @@ def change_prices():
     view.show_pricelist()
     answer = input("Select: ")
     new_price = input("Add the new price: ")
+    prod = ""
+    old_price = ""
     # print(products)
     for i in range(0, len(products)):
         if new_price.isdigit():
@@ -229,10 +237,13 @@ def change_prices():
                 a = print_all_products()
                 n = answer
                 p = new_price
+
                 # for i in range(5,len(a),3):
                 for i in range(0, len(a)):
                     if n == a[i]:
+                        old_price = a[i+2]
                         a[i + 2] = p
+                        prod = a[i+1]
 
                 res = a[0] +" "
 
@@ -267,13 +278,20 @@ def change_prices():
         else:
             print("Error.Try again")
             change_prices()
-
+    logger(": {} is changed {} price from {} to {}".format(user_name, prod,old_price, new_price))
     view.employee()
 
+def logger(operation):
+    date1 = datetime.datetime.now()
+    res = ""
+    date_now = str(date1.day) + "-" + str(date1.month) + "-" + str(date1.year) + "/" + str(date1.hour) + ":" + str(date1.minute)
+    res += date_now + " " + user_name + " " + operation
+    module.add_log(res)
 
 def reg():
     user_name = input("Please, input the login: ")
     user_password = input("Please, input the password: ")
+    logger(": New account")
     module.reg(user_name,user_password)
 
 def log_in():
@@ -288,12 +306,15 @@ def log_in():
         if str(ls_st_user[ls_st_user.index(user_name)+1]) == user_password:
             if str(ls_st_user[ls_st_user.index(user_name)+3]) == "admin":
                 print(f"Hello admin {user_name}")
+                logger(": Admin\'s session")
                 view.admin()
             elif str(ls_st_user[ls_st_user.index(user_name)+3]) == "staff":
                 print(f"Hello employee {user_name}")
+                logger(": Staff\'s session")
                 view.employee()
             elif str(ls_st_user[ls_st_user.index(user_name)+3]) == "client":
                 print(f"Hello client {user_name}")
+                logger(": Clients\'s session")
                 view.client()
         else:
             print("Not correct")

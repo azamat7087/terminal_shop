@@ -13,6 +13,9 @@ def admin():
         control.del_staff()
     elif str(answer) == "3":
         show_staff()
+    else:
+        control.logger(": Admin's session end")
+        print("Bye")
 
 def employee():
     print("""What do you want to do?
@@ -28,6 +31,8 @@ def employee():
     if answer == "3":
        show_pricelist1()
     if answer == "4":
+        user_name = control.get_user_name()
+        control.logger(": {} employees session end".format(user_name))
         print("Goodbye")
 
 def show_staff():
@@ -127,6 +132,7 @@ def client():
     elif a == '3':
         show_cash()
     else:
+        control.logger(": {} clients session end".format(user_name))
         print("Bye")
 
 def show_users():

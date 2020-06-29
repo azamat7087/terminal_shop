@@ -1,5 +1,11 @@
 from pythonShop import control,view
 
+def add_log(res):
+    f = open("data/log","a")
+    res += "\n"
+    f.write(res)
+    f.close()
+
 def reg(user_name,user_password):
     st_users = string_from_users()
     if len(st_users) == 0:
