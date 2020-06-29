@@ -7,23 +7,29 @@ def reg(user_name,user_password):
         f.write("0 login password cash role")
         f.write("\n")
         f.close()
+
     st_users =  st_users.replace("\n"," ")
     ls_users = st_users.split(" ")
     if "" in ls_users:
         del ls_users[ls_users.index("")]
     #print(ls_users)
-    id = int( ls_users[len(ls_users) - 5])
+    if len(st_users) > 0:
+        id = int( ls_users[len(ls_users) - 5])
+    else:
+        id = 0
+
     id += 1
 
     role = "client"
     if user_name not in ls_users:
         with open('data/users','a') as f:
-            if id == 0:
+            if id == 1:
                 role = "admin"
             f.write(str(id)+" "+f"{user_name}" +" "+f"{user_password}"+" "+"100" + " " +f"{role}")
             f.write("\n")
     else:
         print("This person already registred")
+    view.welcome()
 
 
 def ls_clients():

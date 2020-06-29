@@ -90,6 +90,7 @@ def history():
     # print(st_history)
     # print(user_name)
     print("The purchase history of {}".format(user_name))
+    print("-------------------------------------------------")
     for i in range(0, len(ls_history)):
         if user_name == ls_history[i]:
             print("Date: "+ls_history[i-3]+", product: "+ls_history[i-2]+", money left: "+ls_history[i-1]+"$")
