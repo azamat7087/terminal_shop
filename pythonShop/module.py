@@ -86,7 +86,8 @@ def reg(user_name,user_password):
         print("Error. You are already registered.")
         control.reg()
 
-
+def test():
+    pass
 def add_staff(id):
     new_staff = ""
     sql.execute(f"SELECT role FROM users WHERE id = '{id}'")
