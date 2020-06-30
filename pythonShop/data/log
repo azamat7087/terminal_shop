@@ -5,3 +5,145 @@
 30-6-2020/1:44 Jack : Clients's session
 30-6-2020/1:44 Jack : User Jack bought Bread
 30-6-2020/1:44 Jack : Jack clients session end
+30-6-2020/1:46 Azamat : Admin's session
+30-6-2020/1:46 Azamat : Admin's session end
+30-6-2020/9:0 Azamat : Admin's session start
+30-6-2020/9:0 Azamat : Admin's session end
+30-6-2020/9:0 Nick : Staff's session start
+30-6-2020/9:1 Nick : Nick employees session end
+30-6-2020/9:3 Nick : Staff's session start
+30-6-2020/9:3 Nick : Staff's session end
+30-6-2020/9:3 Azamat : Admin's session start
+30-6-2020/9:3 Azamat : Admin's session end
+30-6-2020/9:51 Azamat : Admin's session start
+30-6-2020/9:51 Azamat : User Kate added to staff by admin
+30-6-2020/9:52 Azamat : Admin's session end
+30-6-2020/9:55 Nick : Staff's session start
+30-6-2020/10:34  : New account Azamat
+30-6-2020/10:35  : New account Azamat
+30-6-2020/10:37  : New account Azamat
+30-6-2020/10:37  : New account Azamat
+30-6-2020/10:40  : New account Nick
+30-6-2020/10:45  : New account Azamat
+30-6-2020/10:46  : New account Azamat
+30-6-2020/10:47  : New account Azamat
+30-6-2020/10:47  : New account Nick
+30-6-2020/10:48  : New account Azamat
+30-6-2020/10:49  : New account Azamat
+30-6-2020/10:50  : New account Nick
+30-6-2020/10:50  : New account Azamat
+30-6-2020/10:51  : New account Azamat
+30-6-2020/10:51  : New account Nick
+30-6-2020/10:55  : New account Azamat
+30-6-2020/10:55  : New account Nick
+30-6-2020/10:55  : New account Mike
+30-6-2020/11:3 Kate : New account Kate
+30-6-2020/11:8 Azamat : Admin's session start
+30-6-2020/11:9 Azamat : Admin's session end
+30-6-2020/11:19 Azamat : Admin's session start
+30-6-2020/11:30 Azamat : Admin's session start
+30-6-2020/11:31 Azamat : Staff's session start
+30-6-2020/11:35  : New account Azamat
+30-6-2020/11:35  : New account Nick
+30-6-2020/11:35  : New account Kate
+30-6-2020/11:35 Azamat : Admin's session start
+30-6-2020/11:36 Azamat : User 2 added to staff by admin
+30-6-2020/11:36 Azamat : Admin's session end
+30-6-2020/11:40 Azamat : Admin's session start
+30-6-2020/11:40 Azamat : User 3 added to staff by admin
+30-6-2020/11:40 Azamat : User Kate deleted to staff by admin
+30-6-2020/11:40 Azamat : Admin's session end
+30-6-2020/11:40 Azamat : Admin's session start
+30-6-2020/11:40 Azamat : User 3 added to staff by admin
+30-6-2020/11:40 Azamat : Admin's session end
+30-6-2020/11:41 Azamat : Admin's session start
+30-6-2020/11:41 Azamat : User Kate deleted to staff by admin
+30-6-2020/11:41 Azamat : Admin's session end
+30-6-2020/11:42 Azamat : Admin's session start
+30-6-2020/11:43 Azamat : Admin's session start
+30-6-2020/11:43 Azamat : Admin's session end
+30-6-2020/11:49 Azamat : Admin's session start
+30-6-2020/11:49 Azamat : Admin's session start
+30-6-2020/11:51 Azamat : Admin's session start
+30-6-2020/11:52 Azamat : Admin's session start
+30-6-2020/11:52 Azamat : Admin's session end
+30-6-2020/11:52 Azamat : New account Kate
+30-6-2020/11:53 Azamat : Admin's session start
+30-6-2020/11:59 Azamat : Admin's session start
+30-6-2020/11:59 Azamat : Admin's session end
+30-6-2020/12:1 Azamat : Admin's session start
+30-6-2020/12:1 Azamat User Kate is deleted from system
+30-6-2020/12:1 Azamat : Admin's session end
+30-6-2020/12:2 Azamat : New account Kate
+30-6-2020/12:2 Azamat : Admin's session start
+30-6-2020/12:3  : New account John
+30-6-2020/12:5  : New account Azamat
+30-6-2020/12:6 Azamat : Admin's session start
+30-6-2020/12:6 Azamat : Admin's session end
+30-6-2020/12:6 Azamat : New account Nick
+30-6-2020/12:6 Azamat : Admin's session start
+30-6-2020/12:6 Azamat : User 2 added to staff by admin
+30-6-2020/12:6 Azamat : Admin's session end
+30-6-2020/12:7  : New account Kate
+30-6-2020/12:7 Nick : Staff's session start
+30-6-2020/12:7 Nick : Staff's session end
+30-6-2020/12:9 Azamat : Admin's session start
+30-6-2020/12:10 Azamat : Admin's session end
+30-6-2020/12:19 Nick : Staff's session start
+30-6-2020/12:20 Nick : Staff's session start
+30-6-2020/12:21 Nick : Staff's session start
+30-6-2020/12:22 Nick : Product 12 add by Cola with price by Nick
+30-6-2020/12:22 Nick : Product 7 add by Water with price by Nick
+30-6-2020/13:33 Nick : Staff's session start
+30-6-2020/13:34 Nick : Staff's session start
+30-6-2020/13:37 Nick : Staff's session start
+30-6-2020/13:38 Nick : Staff's session start
+30-6-2020/13:38 Nick : Product 12 add by Water with price by Nick
+30-6-2020/13:42 Nick : Staff's session start
+30-6-2020/13:43 Nick : Staff's session start
+30-6-2020/13:43 Nick : Staff's session start
+30-6-2020/13:47 Nick : Staff's session start
+30-6-2020/13:47 Nick : Staff's session start
+30-6-2020/13:48 Nick : Staff's session start
+30-6-2020/13:48 Nick : Staff's session start
+30-6-2020/13:49 Nick : Staff's session end
+30-6-2020/13:50 Nick : Staff's session start
+30-6-2020/13:57 Nick : Staff's session start
+30-6-2020/14:0 Nick : Staff's session start
+30-6-2020/14:0 Nick : Nick is changed Water price from 8 to 7
+30-6-2020/14:3 Nick : Staff's session start
+30-6-2020/14:3 Nick : Staff's session start
+30-6-2020/14:4 Nick : Staff's session start
+30-6-2020/14:5 Nick : Staff's session start
+30-6-2020/14:6 Nick : Staff's session start
+30-6-2020/14:6 Nick : Nick is changed Bread price from 5 to 1
+30-6-2020/14:7 Nick : Staff's session start
+30-6-2020/14:7 Nick : Nick is changed Bread price from 1 to 2
+30-6-2020/14:7 Nick : Staff's session start
+30-6-2020/14:8 Nick : Nick is changed Bread price from 2 to 5
+30-6-2020/14:11 Nick : Staff's session start
+30-6-2020/14:17 Nick : Staff's session start
+30-6-2020/14:17 Nick : Staff's session end
+30-6-2020/14:21 Kate : Clients's session start
+30-6-2020/14:21 Kate : Clients session end
+30-6-2020/14:22 Kate : Clients's session start
+30-6-2020/14:26 Kate : Clients's session start
+30-6-2020/14:39 Kate : Clients's session start
+30-6-2020/14:45 Kate : Clients's session start
+30-6-2020/14:46 Kate : Clients's session start
+30-6-2020/14:46 Kate : User Kate bought Bread
+30-6-2020/14:47 Kate : Clients's session start
+30-6-2020/14:47 Kate : User Kate bought Bread
+30-6-2020/14:47 Kate : User Kate bought Water
+30-6-2020/14:51 Nick : Staff's session start
+30-6-2020/14:51 Nick : Staff's session end
+30-6-2020/14:51 Kate : Clients's session start
+30-6-2020/14:53 Kate : Clients's session start
+30-6-2020/14:53 Kate : User Kate bought Cola
+30-6-2020/14:54 Kate : Clients's session start
+30-6-2020/14:55 Kate : User Kate bought Cola
+30-6-2020/14:55 Kate : Clients session end
+30-6-2020/14:57 Kate : Clients's session start
+30-6-2020/14:57 Kate : Clients session end
+30-6-2020/14:57 Azamat : Admin's session start
+30-6-2020/14:57 Azamat : Admin's session end

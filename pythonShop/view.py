@@ -12,18 +12,19 @@ def admin():
     elif str(answer) == "2":
         control.del_staff()
     elif str(answer) == "3":
-        show_staff()
+        show_users()
+        admin()
     else:
         control.logger(": Admin's session end")
         print("Bye")
+        welcome()
 
 def employee():
     print("""What do you want to do?
        1. Add new product
        2. Change the prices
        3. Show pricelist
-       4. Delete product
-       5. Exit""")
+       4. Exit""")
     answer = input("Choose: ")
     if answer == "1":
         control.add_product()
@@ -32,41 +33,31 @@ def employee():
     if answer == "3":
         show_pricelist1()
     if answer == "4":
-        control.del_product()
-    if answer == "5":
+        # control.del_product()
         user_name = control.get_user_name()
-        control.logger(": {} employees session end".format(user_name))
+        control.logger(": Staff's session end")
         print("Goodbye")
+        welcome()
 
-def show_staff():
-    user_list = control.ls_st_user()
-
-    user_name = []
-    user_role = []
-    for i in range(6, len(user_list),5):
-        user_name.append(user_list[i])
-    for i in range(9, len(user_list),5):
-        user_role.append(user_list[i])
-    print("ALL STAFF IN OUR SHOP: ")
-    print("-----------------------------------------------------")
-    for i in range(0, len(user_role)):
-        print(str(i+1)+"."+user_name[i]+" - "+user_role[i])
-    print("-----------------------------------------------------")
-    admin()
 
 def show_pricelist():
-    products = control.print_all_products()
-    # print(products)
-    ls_products = []
-    ls_price = []
-    for i in range(4, len(products), 3):
-        ls_products.append(products[i])
+    price_list = module.show_pricelist()
 
-    for i in range(5, len(products), 3):
-        ls_price.append(products[i])
+    print(price_list)
+    # products = control.print_all_products()
+    # # print(products)
+    # ls_products = []
+    # ls_price = []
+    # for i in range(4, len(products), 3):
+    #     ls_products.append(products[i])
+    #
+    # for i in range(5, len(products), 3):
+    #     ls_price.append(products[i])
+    #
+    # for i in range(0,len(ls_price)):
+    #     print(str(i+1)+". " +ls_products[i]+" - " + ls_price[i]+"$")
 
-    for i in range(0,len(ls_price)):
-        print(str(i+1)+". " +ls_products[i]+" - " + ls_price[i]+"$")
+
 
 def show_pricelist1():
     show_pricelist()
@@ -92,30 +83,33 @@ def show_check(check):
         (c)Azamat's shop""")
 
 def history():
-    st_history = module.string_from_history().replace("\n"," ")
-    ls_history = st_history.split(" ")
     user_name = control.get_user_name()
-    # print(st_history)
-    # print(user_name)
+    check = module.get_check()
     print("The purchase history of {}".format(user_name))
-    print("-------------------------------------------------")
-    for i in range(0, len(ls_history)):
-        if user_name == ls_history[i]:
-            print("Date: "+ls_history[i-3]+", product: "+ls_history[i-2]+", money left: "+ls_history[i-1]+"$")
-    print("-------------------------------------------------")
+    for i in range(0, len(check)):
+        print("Date: " + str(check[i][0]) + ", product: " + check[i][1] + ", money left: " + str(check[i][2]) + "$")
+    print(" ")
+
+    # st_history = module.string_from_history().replace("\n"," ")
+    # ls_history = st_history.split(" ")
+    # user_name = control.get_user_name()
+    # # print(st_history)
+    # # print(user_name)
+    # print("The purchase history of {}".format(user_name))
+    # print("-------------------------------------------------")
+    # for i in range(0, len(ls_history)):
+    #     if user_name == ls_history[i]:
+    #         print("Date: "+ls_history[i-3]+", product: "+ls_history[i-2]+", money left: "+ls_history[i-1]+"$")
+    # print("-------------------------------------------------")
     client()
 
 def show_cash():
     user_name = control.get_user_name()
-    st_users = module.string_from_users()
-    clients = st_users.replace("\n", " ").split(" ")
-
-    for i in range(0, len(clients)):
-        if user_name == clients[i]:
-            print("___________________________________________")
-            print("The cash of {} is {}$".format(user_name, clients[i + 2]))
-            print("___________________________________________")
-            client()
+    cash = module.get_cash(user_name)
+    print("___________________________________________")
+    print("The cash of {} is {}$".format(user_name, cash))
+    print("___________________________________________")
+    client()
 
 
 def client():
@@ -135,13 +129,18 @@ def client():
     elif a == '3':
         show_cash()
     else:
-        control.logger(": {} clients session end".format(user_name))
+        control.logger(": Clients session end".format(user_name))
         print("Bye")
+        welcome()
 
 def show_users():
-    user_list = control.list_all_users()
-    for i in range(1, len(user_list)):
-        print(str(i) + " - " + user_list[i])
+    print("***************************************")
+    print("All users in system")
+    print("---------------------------------------")
+    ls_us = module.list_users()
+    for i in ls_us:
+        print("ID: " + str(i[0]) + "," + " user: " + str(i[1]) + ", role: " + str(i[2]))
+    print("***************************************")
 
 def login():
     print("Do you have a account? ")
@@ -169,19 +168,20 @@ def welcome():
     elif a == 2:
         control.reg()
     elif a == 3:
-        user_list = control.ls_st_user()
-
-        user_name = []
-        user_role = []
-        for i in range(6, len(user_list), 5):
-            user_name.append(user_list[i])
-        for i in range(9, len(user_list), 5):
-            user_role.append(user_list[i])
-        print("ALL STAFF IN OUR SHOP: ")
-        print("-----------------------------------------------------")
-        for i in range(0, len(user_role)):
-            print(str(i + 1) + "." + user_name[i] + " - " + user_role[i])
-        print("-----------------------------------------------------")
+        show_users()
+        # user_list = control.ls_st_user()
+        #
+        # user_name = []
+        # user_role = []
+        # for i in range(6, len(user_list), 5):
+        #     user_name.append(user_list[i])
+        # for i in range(9, len(user_list), 5):
+        #     user_role.append(user_list[i])
+        # print("ALL STAFF IN OUR SHOP: ")
+        # print("-----------------------------------------------------")
+        # for i in range(0, len(user_role)):
+        #     print(str(i + 1) + "." + user_name[i] + " - " + user_role[i])
+        # print("-----------------------------------------------------")
         welcome()
     else:
         print("Goodbye")
